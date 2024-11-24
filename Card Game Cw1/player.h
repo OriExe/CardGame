@@ -1,15 +1,23 @@
-#include <iostream>
+#pragma once
 #include <vector>
 #include "card.h"
 
 using std::vector;
-#pragma once
+class card; // <- Declaration of class to ensure program knows it exists
 class player {
 private:
 	int health = 20;
 	player* opponent;
-	vector<card*> deck; vector<card*> hand; vector<card*> discord_pile;
+	vector<card*> deck; 
+	vector<card*> hand;
+	vector<card*> discord_pile;
+
+
 public:
+	player(vector<card*> newDeck)
+	{
+		deck = newDeck;
+	}
 	void loseHeath(int i)
 	{
 		health -= i;
@@ -23,13 +31,13 @@ public:
 		}
 		else
 		{
-			//Draws card
+			//Draws card*
 			return true;
 		}
 	}
-	void playCard(card *c)
+	void playCard(card* c)
 	{
-		//Play card 
+		//Play card* 
 	}
 	virtual void myTurn()
 	{
@@ -38,6 +46,14 @@ public:
 	bool hasLost()
 	{
 		///Losing condition
+	}
+
+	void setOpponent(player* opp)
+	{
+		if (opp != this)
+		{
+			opponent = opp;
+		}
 	}
 };
 
