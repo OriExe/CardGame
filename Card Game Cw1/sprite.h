@@ -11,11 +11,15 @@ private:
 public:
 	string getName()
 	{
-
+		return "Sprite";
 	}
 	void effect(player* p)
 	{
 
+	}
+	int getAmount()
+	{
+		return 6;
 	}
 };
 

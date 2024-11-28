@@ -11,11 +11,16 @@ private:
 public:
 	string getName()
 	{
-
+		return "Peek";
 	}
 	void effect(player* p)
 	{
 
+	}
+
+	int getAmount()
+	{
+		return 4;
 	}
 };
 

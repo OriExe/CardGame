@@ -3,17 +3,17 @@
 #include "card.h"
 
 using std::vector;
+using std::endl;
 class card; // <- Declaration of class to ensure program knows it exists
 class player {
 private:
 	int health = 20;
-	player* opponent;
+	player* opponent = nullptr;
 	vector<card*> deck; 
 	vector<card*> hand;
 	vector<card*> discord_pile;
-
-
 public:
+	player() {} //A default constructor??
 	player(vector<card*> newDeck)
 	{
 		deck = newDeck;
@@ -48,11 +48,16 @@ public:
 		///Losing condition
 	}
 
+	/// <summary>
+	/// Sets opponent of player
+	/// </summary>
+	/// <param name="opp"></param>
 	void setOpponent(player* opp)
 	{
-		if (opp != this)
+		if (opp != this && opponent != nullptr)
 		{
 			opponent = opp;
+			std::cout << "Opponent Set" << endl;
 		}
 	}
 };

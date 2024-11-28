@@ -11,11 +11,15 @@ private:
 public:
 	string getName()
 	{
-
+		return "Painful Lesson";
 	}
 	void effect(player* p)
 	{
 
+	}
+	int getAmount()
+	{
+		return 5;
 	}
 };
 

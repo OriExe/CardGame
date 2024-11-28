@@ -11,11 +11,15 @@ private:
 public:
 	string getName()
 	{
-
+		return "Full Heal";
 	}
 	void effect(player* p)
 	{
 
+	}
+	int getAmount()
+	{
+		return 1;
 	}
 };
 
