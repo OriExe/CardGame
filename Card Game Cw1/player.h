@@ -31,13 +31,19 @@ public:
 		}
 		else
 		{
-			//Draws card*
+			hand.push_back(deck.front());
+			deck.erase(deck.begin());
 			return true;
 		}
 	}
-	void playCard(card* c)
+	/// <summary>
+	/// Removes the card from the player's hand and moves it to the discard pile 
+	/// </summary>
+	/// <param name="index">Takes an index to make it easier to remove the value</param>
+	void playCard(int index)
 	{
-		//Play card* 
+		discord_pile.push_back(hand[index]);
+		hand.erase(hand.begin() + index);
 	}
 	virtual void myTurn()
 	{

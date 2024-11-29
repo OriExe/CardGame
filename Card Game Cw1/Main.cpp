@@ -88,7 +88,13 @@ int main()
 	ComputerPlayer* aiPlayer = new ComputerPlayer(computerDeck);
 	player->setOpponent(aiPlayer);
 	aiPlayer->setOpponent(player);
-
+	
+	cout << "Drawing cards" << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		player->drawCard();
+		aiPlayer->drawCard();
+	}
 	cout << "hi";
 	return 0;
 }
