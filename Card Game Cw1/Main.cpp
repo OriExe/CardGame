@@ -42,7 +42,7 @@ void createDeck(vector<card*>& cards)
 	painfulLesson* painfulLessonCard = new painfulLesson();
 	peek* peakCard = new peek();
 	refresh* refreshCard = new refresh();
-	sprite* spriteCard = new sprite();
+	spite* spriteCard = new spite();
 	switchroo* switchRooCard = new switchroo();
 
 #pragma endregion
@@ -73,7 +73,6 @@ void shuffle(vector<card*>& cards)
 	cout << "Deck shuffled" << endl;
 }
 
-
 int main()
 {
 	//Create deck for both the player and computer
@@ -95,8 +94,15 @@ int main()
 		player->drawCard();
 		aiPlayer->drawCard();
 	}
-	cout << "Welcome to the London Card game, type the number of the card you want to play that card /nif you need help then add \"/?\" to your  answer \nIf your deck runs out of cards you lose" << endl;
-	cout << "Your deck:" << endl;
-	player->myTurn();
+
+	//Start of game loop
+	cout << "Welcome to the London Card game, type the number of the card you want to play that card /nif you need help then add \"/?\" to your answer (For example \"1/?\") \nIf your deck runs out of cards you lose" << endl;
+
+	while (player->hasLost() == false || aiPlayer->hasLost() == false)
+	{
+		cout << "Your deck:" << "	Health:" << player->getHealth() << "	Opponent Health:" <<aiPlayer->getHealth() << endl;
+		player->myTurn();
+		aiPlayer->myTurn();
+	}
 	return 0;
 }

@@ -5,13 +5,13 @@
 using std::cout;
 using std::string;
 
-class sprite : public card {
+class spite : public card {
 private:
 
 public:
 	string getName()
 	{
-		return "Sprite";
+		return "Spite";
 	}
 	void effect(player* p)
 	{

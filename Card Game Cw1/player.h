@@ -53,8 +53,12 @@ public:
 	bool hasLost()
 	{
 		///Losing condition
+		return false;
 	}
-
+	int getHealth()
+	{
+		return health;
+	}
 	/// <summary>
 	/// Sets opponent of player
 	/// </summary>
