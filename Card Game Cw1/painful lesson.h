@@ -21,5 +21,9 @@ public:
 	{
 		return 5;
 	}
+	virtual string getHelp()
+	{
+		return "opponent loses 2 health and must draw a card";
+	}
 };
 

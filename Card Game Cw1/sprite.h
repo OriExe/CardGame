@@ -21,5 +21,9 @@ public:
 	{
 		return 6;
 	}
+	virtual string getHelp()
+	{
+		return "both players lose 1 health";
+	}
 };
 

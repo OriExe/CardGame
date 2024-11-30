@@ -10,8 +10,9 @@ private:
 	int health = 20;
 	player* opponent = nullptr;
 	vector<card*> deck; 
-	vector<card*> hand;
 	vector<card*> discord_pile;
+protected:
+	vector<card*> hand;
 public:
 	player() {} //A default constructor??
 	player(vector<card*> newDeck)

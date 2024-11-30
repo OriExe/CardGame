@@ -21,5 +21,9 @@ public:
 	{
 		return 1;
 	}
+	virtual string getHelp()
+	{
+		return "restores your health back to 20";
+	}
 };
 

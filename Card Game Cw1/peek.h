@@ -22,5 +22,9 @@ public:
 	{
 		return 4;
 	}
+	virtual string getHelp()
+	{
+		return "look at the top cards of both players’ decks";
+	}
 };
 

@@ -10,13 +10,30 @@ class card {
 private:
 
 public:
+	/// <summary>
+	/// Gets the name of the card the player wants to play
+	/// </summary>
+	/// <returns></returns>
 	virtual string getName()
 	{
 		return "";
 	}
+	/// <summary>
+	/// Plays the effect on the character
+	/// </summary>
+	/// <param name="p"></param>
 	virtual void effect(player* p)
 	{
 
+	}
+
+	/// <summary>
+	/// Gets help for whatever card the player wants to play
+	/// </summary>
+	/// <returns></returns>
+	virtual string getHelp()
+	{
+		return "";
 	}
 
 	/// <summary>

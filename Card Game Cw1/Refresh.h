@@ -21,5 +21,9 @@ public:
 	{
 		return 2;
 	}
+	virtual string getHelp()
+	{
+		return "lose 3 health and shuffle your discard pile back into your deck.";
+	}
 };
 

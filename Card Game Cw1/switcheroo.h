@@ -21,5 +21,9 @@ public:
 	{
 		return 2;
 	}
+	string getHelp()
+	{
+		return "swaps the contents of your hand with your opponent";
+	}
 };
 

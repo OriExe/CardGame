@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
 #include "player.h"
 
 using std::vector;
@@ -17,9 +18,39 @@ public:
 	{
 		cout << "Human Played added" << endl;
 	}
+
+	/// <summary>
+	/// Runs code that lets the player take their turn
+	/// </summary>
 	void myTurn()
 	{
-		//Do something
+		//Prints all cards in the player's hand
+		for (int i = 0; i < hand.size(); i++)
+		{
+			cout << i << ":" << hand[i]->getName() << endl;
+		}
+
+		cout << "Pick a card to play" << endl;
+		string query = "";
+		std::cin >> query;
+		int index = std::stoi(query); //Converts string to int
+		if (index >= 0 && index < hand.size()) // <- Is index in range
+		{
+			if (query == std::to_string(index) + "/?")
+			{
+				cout << "--" << hand[index]->getHelp() <<  "--" << endl; // <- Returns card info
+			}
+			else
+			{
+				playCard(index); //Plays card on opponent  triggering it's effect
+				return;
+			}
+		}
+		else
+		{
+			cout << "This is out of the range" << endl;
+		}
+		myTurn();
 	}
 };
 

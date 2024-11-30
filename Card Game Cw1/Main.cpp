@@ -95,6 +95,8 @@ int main()
 		player->drawCard();
 		aiPlayer->drawCard();
 	}
-	cout << "hi";
+	cout << "Welcome to the London Card game, type the number of the card you want to play that card /nif you need help then add \"/?\" to your  answer \nIf your deck runs out of cards you lose" << endl;
+	cout << "Your deck:" << endl;
+	player->myTurn();
 	return 0;
 }
