@@ -5,6 +5,7 @@
 using std::cout;
 using std::string;
 
+class player;
 class refresh : public card {
 private:
 
@@ -15,13 +16,14 @@ public:
 	}
 	void effect(player* p)
 	{
-
+		p->getOpponent()->loseHeath(3); //Gets the player that played the card 
+		p->getOpponent()->rebootDeck();
 	}
 	int getAmount()
 	{
 		return 2;
 	}
-	virtual string getHelp()
+	string getHelp()
 	{
 		return "lose 3 health and shuffle your discard pile back into your deck.";
 	}

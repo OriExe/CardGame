@@ -5,6 +5,7 @@
 using std::cout;
 using std::string;
 
+class player;
 class spite : public card {
 private:
 
@@ -15,13 +16,14 @@ public:
 	}
 	void effect(player* p)
 	{
-
+		p->loseHeath(1);
+		p->getOpponent()->loseHeath(1);
 	}
 	int getAmount()
 	{
 		return 6;
 	}
-	virtual string getHelp()
+	string getHelp()
 	{
 		return "both players lose 1 health";
 	}

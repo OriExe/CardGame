@@ -22,10 +22,7 @@ public:
 	/// Plays the effect on the character
 	/// </summary>
 	/// <param name="p"></param>
-	virtual void effect(player* p)
-	{
-
-	}
+	virtual void effect(player* p) = 0;
 
 	/// <summary>
 	/// Gets help for whatever card the player wants to play

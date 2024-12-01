@@ -5,6 +5,7 @@
 using std::cout;
 using std::string;
 
+class player;
 class painfulLesson : public card{
 private:
 
@@ -15,13 +16,15 @@ public:
 	}
 	void effect(player* p)
 	{
-
+		p->loseHeath(2);
+		p->drawCard();
+		cout << "It was very effective" << endl;
 	}
 	int getAmount()
 	{
 		return 5;
 	}
-	virtual string getHelp()
+	string getHelp()
 	{
 		return "opponent loses 2 health and must draw a card";
 	}

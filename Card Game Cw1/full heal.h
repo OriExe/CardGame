@@ -5,6 +5,7 @@
 using std::cout;
 using std::string;
 
+class player;
 class fullHeal : public card {
 private:
 
@@ -15,13 +16,13 @@ public:
 	}
 	void effect(player* p)
 	{
-
+		p->getOpponent()->fullHeal(); //The opponent in this case would be the player that called the function
 	}
 	int getAmount()
 	{
 		return 1;
 	}
-	virtual string getHelp()
+	 string getHelp()
 	{
 		return "restores your health back to 20";
 	}

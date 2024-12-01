@@ -5,6 +5,7 @@
 using std::cout;
 using std::string;
 
+class player;
 class switchroo : public card {
 private:
 
@@ -15,7 +16,7 @@ public:
 	}
 	void effect(player* p)
 	{
-
+		p->swapHands(p->getOpponent()->getHand()); //Gives the oppnent their deck
 	}
 	int getAmount()
 	{

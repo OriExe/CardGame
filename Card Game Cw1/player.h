@@ -5,6 +5,8 @@
 using std::vector;
 using std::endl;
 class card; // <- Declaration of class to ensure program knows it exists
+//void card::effect(player* p);
+extern void shuffle(vector<card*>& cards); //Declaration of function inside main C++ file // Reference https://learn.microsoft.com/en-us/cpp/cpp/extern-cpp?view=msvc-170
 class player {
 private:
 	int health = 20;
@@ -28,6 +30,7 @@ public:
 		//If their deck is empty return false;
 		if (deck.size() == 0)
 		{
+			health = 0;
 			return false;
 		}
 		else
@@ -43,8 +46,10 @@ public:
 	/// <param name="index">Takes an index to make it easier to remove the value</param>
 	void playCard(int index)
 	{
+		card* temp = hand[index];
 		discord_pile.push_back(hand[index]);
 		hand.erase(hand.begin() + index);
+		temp->effect(opponent); //I'm not sure why this isn't working
 	}
 	virtual void myTurn()
 	{
@@ -55,6 +60,7 @@ public:
 		///Losing condition
 		return false;
 	}
+#pragma region Getters
 	int getHealth()
 	{
 		return health;
@@ -63,6 +69,19 @@ public:
 	/// Sets opponent of player
 	/// </summary>
 	/// <param name="opp"></param>
+	player* getOpponent()
+	{
+		return opponent;
+	}
+
+	vector<card*> getHand()
+	{
+		return hand;
+	}
+	virtual bool isHuman() = 0;
+
+#pragma endregion
+
 	void setOpponent(player* opp)
 	{
 		if (opp != this && opponent != nullptr)
@@ -71,5 +90,44 @@ public:
 			std::cout << "Opponent Set" << endl;
 		}
 	}
+	
+#pragma region Card Functions
+	//Fully heals the player
+	void fullHeal()
+	{
+		health = 20;
+	}
+
+	/// <summary>
+	/// To be used with switchroo class
+	/// </summary>
+	/// <param name="TempHand"></param>
+	/// <param name="n">Makes the function only run twice</param>
+	void swapHands(vector<card*> TempHand, int n = 1)
+	{
+
+		if (n > 0) //If not 0 
+		{
+			opponent->swapHands(hand, 0); //Becomes 0 and doesn't run again
+		}
+		hand = TempHand;
+	}
+
+	void rebootDeck()
+	{
+		for (card* DeadCard : discord_pile)
+		{
+			deck.push_back(DeadCard);
+		}
+		discord_pile.clear();
+		shuffle(deck);
+	}
+	string getFirstCardName()
+	{
+		return deck[0]->getName();
+	}
+
+#pragma endregion
+
 };
 

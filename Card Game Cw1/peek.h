@@ -5,6 +5,7 @@
 using std::cout;
 using std::string;
 
+class player;
 class peek : public card {
 private:
 
@@ -15,14 +16,23 @@ public:
 	}
 	void effect(player* p)
 	{
-
+		player* temp;
+		if (p->isHuman() == true)
+		{
+			temp = p->getOpponent();
+		}
+		else
+		{
+			temp = p;
+		}
+		cout << "Opponent has" << temp->getFirstCardName() << " In their deck";
 	}
 
 	int getAmount()
 	{
 		return 4;
 	}
-	virtual string getHelp()
+	string getHelp()
 	{
 		return "look at the top cards of both players’ decks";
 	}

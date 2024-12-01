@@ -65,13 +65,15 @@ void createDeck(vector<card*>& cards)
 /// Shuffles the players deck
 /// </summary>
 /// <param name="cards">Reference to current deck</param>
-void shuffle(vector<card*>& cards)
+
+extern void shuffle(vector<card*>& cards)
 {
 	//This is not that random tho
 	auto rng = std::default_random_engine{};
 	std::shuffle(cards.begin(), cards.end(), rng);
 	cout << "Deck shuffled" << endl;
 }
+
 
 int main()
 {

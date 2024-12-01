@@ -52,5 +52,10 @@ public:
 		}
 		myTurn();
 	}
+
+	bool isHuman()
+	{
+		return true;
+	}
 };
 

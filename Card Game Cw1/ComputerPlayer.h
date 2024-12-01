@@ -26,5 +26,10 @@ public:
 		cout << "Computer has played " << hand[randomIndex]->getName() << endl; 
 		playCard(randomIndex);
 	}
+
+	bool isHuman()
+	{
+		return false;
+	}
 };
 
