@@ -14,10 +14,10 @@ public:
 	{
 		return "Spite";
 	}
-	void effect(player* p)
+	void effect(player& p)
 	{
-		p->loseHeath(1);
-		p->getOpponent()->loseHeath(1);
+		p.loseHeath(1);
+		p.getOpponent()->loseHeath(1);
 	}
 	int getAmount()
 	{

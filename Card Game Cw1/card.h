@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "player.h"
-
+#include <string>
+//Removing include player helped to make the player class define functions in this class
 using std::cout;
 using std::string;
 
@@ -22,7 +22,7 @@ public:
 	/// Plays the effect on the character
 	/// </summary>
 	/// <param name="p"></param>
-	virtual void effect(player* p) = 0;
+	virtual void effect(player& p) = 0;
 
 	/// <summary>
 	/// Gets help for whatever card the player wants to play

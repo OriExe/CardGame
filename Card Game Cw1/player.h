@@ -2,11 +2,13 @@
 #include <vector>
 #include "card.h"
 
+
 using std::vector;
 using std::endl;
 class card; // <- Declaration of class to ensure program knows it exists
 //void card::effect(player* p);
 extern void shuffle(vector<card*>& cards); //Declaration of function inside main C++ file // Reference https://learn.microsoft.com/en-us/cpp/cpp/extern-cpp?view=msvc-170
+
 class player {
 private:
 	int health = 20;
@@ -44,17 +46,14 @@ public:
 	/// Removes the card from the player's hand and moves it to the discard pile 
 	/// </summary>
 	/// <param name="index">Takes an index to make it easier to remove the value</param>
-	void playCard(int index)
+	card* playCard(int index) 
 	{
 		card* temp = hand[index];
 		discord_pile.push_back(hand[index]);
-		hand.erase(hand.begin() + index);
-		temp->effect(opponent); //I'm not sure why this isn't working
+		hand.erase(hand.begin() + index); //I'm not sure why this isn't working
+		return temp;
 	}
-	virtual void myTurn()
-	{
-		
-	}
+	virtual int myTurn() = 0;
 	bool hasLost()
 	{
 		///Losing condition
@@ -81,10 +80,13 @@ public:
 	virtual bool isHuman() = 0;
 
 #pragma endregion
-
+	/// <summary>
+	/// Should only run in the beginnig of the function
+	/// </summary>
+	/// <param name="opp"></param>
 	void setOpponent(player* opp)
 	{
-		if (opp != this && opponent != nullptr)
+		if (opponent == nullptr)
 		{
 			opponent = opp;
 			std::cout << "Opponent Set" << endl;
@@ -122,9 +124,10 @@ public:
 		discord_pile.clear();
 		shuffle(deck);
 	}
-	string getFirstCardName()
+
+	void getFirstCardName()
 	{
-		return deck[0]->getName();
+		std::cout << "Opponent has" << deck[0]->getName() << " In their deck";
 	}
 
 #pragma endregion

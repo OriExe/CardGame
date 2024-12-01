@@ -14,10 +14,10 @@ public:
 	{
 		return "Painful Lesson";
 	}
-	void effect(player* p)
+	void effect(player& p)
 	{
-		p->loseHeath(2);
-		p->drawCard();
+		p.loseHeath(2);
+		p.drawCard();
 		cout << "It was very effective" << endl;
 	}
 	int getAmount()

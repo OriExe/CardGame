@@ -14,18 +14,17 @@ public:
 	{
 		return "Peek";
 	}
-	void effect(player* p)
+	void effect(player& p)
 	{
-		player* temp;
-		if (p->isHuman() == true)
+		//player* temp;
+		if (p.isHuman() == true)
 		{
-			temp = p->getOpponent();
+			 p.getOpponent()->getFirstCardName();
 		}
 		else
 		{
-			temp = p;
+			p.getFirstCardName();
 		}
-		cout << "Opponent has" << temp->getFirstCardName() << " In their deck";
 	}
 
 	int getAmount()

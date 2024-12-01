@@ -14,10 +14,10 @@ public:
 	{
 		return "Refresh";
 	}
-	void effect(player* p)
+	void effect(player& p)
 	{
-		p->getOpponent()->loseHeath(3); //Gets the player that played the card 
-		p->getOpponent()->rebootDeck();
+		p.getOpponent()->loseHeath(3); //Gets the player that played the card 
+		p.getOpponent()->rebootDeck();
 	}
 	int getAmount()
 	{

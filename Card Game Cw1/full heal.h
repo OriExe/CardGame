@@ -14,9 +14,9 @@ public:
 	{
 		return "Full Heal";
 	}
-	void effect(player* p)
+	void effect(player& p)
 	{
-		p->getOpponent()->fullHeal(); //The opponent in this case would be the player that called the function
+		p.getOpponent()->fullHeal(); //The opponent in this case would be the player that called the function
 	}
 	int getAmount()
 	{

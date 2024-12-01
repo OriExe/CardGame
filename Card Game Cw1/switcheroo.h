@@ -14,9 +14,9 @@ public:
 	{
 		return "Switcheroo";
 	}
-	void effect(player* p)
+	void effect(player& p)
 	{
-		p->swapHands(p->getOpponent()->getHand()); //Gives the oppnent their deck
+		p.swapHands(p.getOpponent()->getHand()); //Gives the oppnent their deck
 	}
 	int getAmount()
 	{

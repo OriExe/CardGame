@@ -22,7 +22,8 @@ public:
 	/// <summary>
 	/// Runs code that lets the player take their turn
 	/// </summary>
-	void myTurn()
+	/// <returns>Returns index of the card they picked in their hand</returns>
+	int myTurn()
 	{
 		//Prints all cards in the player's hand
 		for (int i = 0; i < hand.size(); i++)
@@ -42,8 +43,7 @@ public:
 			}
 			else
 			{
-				playCard(index); //Plays card on opponent  triggering it's effect
-				return;
+				return index; //Plays card on opponent  triggering it's effect
 			}
 		}
 		else
@@ -51,6 +51,7 @@ public:
 			cout << "This is out of the range" << endl;
 		}
 		myTurn();
+		
 	}
 
 	bool isHuman()

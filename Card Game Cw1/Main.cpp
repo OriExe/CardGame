@@ -99,12 +99,16 @@ int main()
 
 	//Start of game loop
 	cout << "Welcome to the London Card game, type the number of the card you want to play that card /nif you need help then add \"/?\" to your answer (For example \"1/?\") \nIf your deck runs out of cards you lose" << endl;
-
+	int playerIndex = 0;
+	int computerIndex = 0;
 	while (player->hasLost() == false || aiPlayer->hasLost() == false)
 	{
 		cout << "Your deck:" << "	Health:" << player->getHealth() << "	Opponent Health:" <<aiPlayer->getHealth() << endl;
-		player->myTurn();
-		aiPlayer->myTurn();
+		playerIndex = player->myTurn();
+		player->playCard(playerIndex)->effect(*aiPlayer);
+		//
+		computerIndex = aiPlayer->myTurn();
+		aiPlayer->playCard(computerIndex)->effect(*player);
 	}
 	return 0;
 }
