@@ -30,7 +30,7 @@ public:
 		{
 			cout << i << ":" << hand[i]->getName() << endl;
 		}
-
+		cout << hand.size() << ":Draw Card" << endl;
 		cout << "Pick a card to play" << endl;
 		string query = "";
 		std::cin >> query;
@@ -46,11 +46,16 @@ public:
 				return index; //Plays card on opponent  triggering it's effect
 			}
 		}
+		else if (index == hand.size())
+		{
+			cout << "Drawing card" << endl;
+			drawCard();
+		}
 		else
 		{
 			cout << "This is out of the range" << endl;
 		}
-		myTurn();
+		return myTurn();
 		
 	}
 

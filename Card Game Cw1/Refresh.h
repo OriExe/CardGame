@@ -18,6 +18,15 @@ public:
 	{
 		p.getOpponent()->loseHeath(3); //Gets the player that played the card 
 		p.getOpponent()->rebootDeck();
+
+		if (p.getOpponent()->isHuman() == true)
+		{
+			cout << "Ouch! But now your used cards are shuffled back in your deck" << endl;
+		}
+		else
+		{
+			cout << "Used cards have been shuffed into their deck" << endl;
+		}
 	}
 	int getAmount()
 	{

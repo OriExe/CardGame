@@ -18,6 +18,7 @@ public:
 	{
 		p.loseHeath(1);
 		p.getOpponent()->loseHeath(1);
+		cout << "You have both lost 1 hp" << endl;
 	}
 	int getAmount()
 	{

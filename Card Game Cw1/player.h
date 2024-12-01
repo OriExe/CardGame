@@ -27,7 +27,7 @@ public:
 	{
 		health -= i;
 	}
-	bool drawCard()
+	bool drawCard() ///Draw a card from their deck
 	{
 		//If their deck is empty return false;
 		if (deck.size() == 0)
@@ -127,7 +127,7 @@ public:
 
 	void getFirstCardName()
 	{
-		std::cout << "Opponent has" << deck[0]->getName() << " In their deck";
+		std::cout << "Opponent has " << deck[0]->getName() << " in their deck" << endl;
 	}
 
 #pragma endregion

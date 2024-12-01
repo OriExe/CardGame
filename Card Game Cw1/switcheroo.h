@@ -17,6 +17,14 @@ public:
 	void effect(player& p)
 	{
 		p.swapHands(p.getOpponent()->getHand()); //Gives the oppnent their deck
+		if (p.getOpponent()->isHuman() == true)
+		{
+			cout << "You stole their hand!" << endl;
+		}
+		else
+		{
+			cout << "You lost your hand!" << endl;
+		}
 	}
 	int getAmount()
 	{

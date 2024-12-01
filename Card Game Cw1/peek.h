@@ -33,7 +33,7 @@ public:
 	}
 	string getHelp()
 	{
-		return "look at the top cards of both players’ decks";
+		return "look at the top cards of both players decks";
 	}
 };
 
