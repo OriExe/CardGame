@@ -101,7 +101,7 @@ int main()
 	cout << "Welcome to the London Card game, type the number of the card you want to play that card /nif you need help then add \"/?\" to your answer (For example \"1/?\") \nIf your deck runs out of cards you lose" << endl;
 	int playerIndex = 0;
 	int computerIndex = 0;
-	while (player->hasLost() == false || aiPlayer->hasLost() == false)
+	while (player->hasLost() == false && aiPlayer->hasLost() == false)
 	{
 		cout << "Your deck:" << "	Health:" << player->getHealth() << "	Opponent Health:" <<aiPlayer->getHealth() << endl;
 		playerIndex = player->myTurn();
@@ -109,6 +109,15 @@ int main()
 		//
 		computerIndex = aiPlayer->myTurn();
 		aiPlayer->playCard(computerIndex)->effect(*player);
+	}
+
+	if (player->hasLost() == true)
+	{
+		cout << "You have lost :(" << endl;
+	}
+	else
+	{
+		cout << "Congrats you win!" << endl;
 	}
 	return 0;
 }

@@ -3,7 +3,7 @@
 #include "card.h"
 #include <vector>
 #include <random>
-#include <Windows.h>
+//#include <Windows.h>
 
 using std::vector;
 using std::endl;
@@ -22,11 +22,14 @@ public:
 		//Random Number generator I've used in a previous project of mine
 		std::uniform_int_distribution<int> RandomInt(0, hand.size()); //Generates a random Number
 		int randomIndex = RandomInt(engine);
-		Sleep(2000); //Windows specific sleep function  Guide in this link --> https://www.geeksforgeeks.org/sleep-function-in-cpp/
+		//Sleep(2000); //Windows specific sleep function  Guide in this link --> https://www.geeksforgeeks.org/sleep-function-in-cpp/
 		if (randomIndex == hand.size())
 		{
-			cout << "Computer has drawn a card" << endl;
-			drawCard();
+			if (hand.size() < 5)
+			{
+				cout << "Computer has drawn a card" << endl;
+				drawCard();
+			}
 			return myTurn();
 		}
 		else

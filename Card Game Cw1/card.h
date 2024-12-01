@@ -22,7 +22,7 @@ public:
 	/// Plays the effect on the character
 	/// </summary>
 	/// <param name="p"></param>
-	virtual void effect(player& p) = 0;
+	virtual void effect(player& p) {} //Adding equals 0 would prevent the dummy card from working
 
 	/// <summary>
 	/// Gets help for whatever card the player wants to play

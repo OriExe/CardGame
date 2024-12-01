@@ -27,19 +27,17 @@ public:
 	{
 		health -= i;
 	}
-	bool drawCard() ///Draw a card from their deck
+	void drawCard() ///Draw a card from their deck
 	{
 		//If their deck is empty return false;
 		if (deck.size() == 0)
 		{
 			health = 0;
-			return false;
 		}
 		else
 		{
 			hand.push_back(deck.front());
 			deck.erase(deck.begin());
-			return true;
 		}
 	}
 	/// <summary>
@@ -48,16 +46,31 @@ public:
 	/// <param name="index">Takes an index to make it easier to remove the value</param>
 	card* playCard(int index) 
 	{
-		card* temp = hand[index];
-		discord_pile.push_back(hand[index]);
-		hand.erase(hand.begin() + index); //I'm not sure why this isn't working
-		return temp;
+		if (hand.size() != 0)
+		{
+			card* temp = hand[index];
+			discord_pile.push_back(hand[index]);
+			hand.erase(hand.begin() + index); //I'm not sure why this isn't working
+			return temp;
+		}
+		else
+		{
+			card* dummy = new card();
+			return dummy;
+		}
+		
 	}
 	virtual int myTurn() = 0;
 	bool hasLost()
 	{
-		///Losing condition
-		return false;
+		if (health <= 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 #pragma region Getters
 	int getHealth()
@@ -127,7 +140,10 @@ public:
 
 	void getFirstCardName()
 	{
-		std::cout << "Opponent has " << deck[0]->getName() << " in their deck" << endl;
+		if (deck.size() != 0)
+		{
+			std::cout << "Opponent has " << deck[0]->getName() << " in their deck" << endl;
+		}
 	}
 
 #pragma endregion

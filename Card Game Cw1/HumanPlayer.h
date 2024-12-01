@@ -48,8 +48,19 @@ public:
 		}
 		else if (index == hand.size())
 		{
-			cout << "Drawing card" << endl;
-			drawCard();
+			if (hand.size() < 5)
+			{
+				cout << "Drawing card" << endl;
+				drawCard();
+			}
+			else
+			{
+				cout << "You cannot draw more cards" << endl;
+			}
+			if (hand.size() == 0) //If hand empty
+			{
+				return 0;
+			}
 		}
 		else
 		{
