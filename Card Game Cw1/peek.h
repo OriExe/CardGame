@@ -19,7 +19,7 @@ public:
 		//player* temp;
 		if (p.isHuman() == true)
 		{
-			 p.getOpponent()->getFirstCardName();
+			 p.getOpponent()->getFirstCardName(); ///Get the name of the card in the computer's deck
 		}
 		else
 		{

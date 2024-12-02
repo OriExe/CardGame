@@ -16,8 +16,8 @@ public:
 	}
 	void effect(player& p)
 	{
-		p.getOpponent()->loseHeath(3); //Gets the player that played the card 
-		p.getOpponent()->rebootDeck();
+		p.getOpponent()->loseHeath(3); //Gets the player that played the card and makes them lose hp 
+		p.getOpponent()->rebootDeck(); 
 
 		if (p.getOpponent()->isHuman() == true)
 		{

@@ -14,6 +14,10 @@ public:
 	{
 		return "Spite";
 	}
+	/// <summary>
+	/// Lost 1 hp
+	/// </summary>
+	/// <param name="p"></param>
 	void effect(player& p)
 	{
 		p.loseHeath(1);

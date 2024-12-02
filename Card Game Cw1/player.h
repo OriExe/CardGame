@@ -7,14 +7,14 @@ using std::vector;
 using std::endl;
 class card; // <- Declaration of class to ensure program knows it exists
 //void card::effect(player* p);
-extern void shuffle(vector<card*>& cards); //Declaration of function inside main C++ file // Reference https://learn.microsoft.com/en-us/cpp/cpp/extern-cpp?view=msvc-170
+extern vector<card*> shuffle(vector<card*> cards); //Declaration of function inside main C++ file // Reference https://learn.microsoft.com/en-us/cpp/cpp/extern-cpp?view=msvc-170
 
 class player {
 private:
 	int health = 20;
 	player* opponent = nullptr;
 	vector<card*> deck; 
-	vector<card*> discord_pile;
+	vector<card*> discard_pile; 
 protected:
 	vector<card*> hand;
 public:
@@ -46,14 +46,14 @@ public:
 	/// <param name="index">Takes an index to make it easier to remove the value</param>
 	card* playCard(int index) 
 	{
-		if (hand.size() != 0)
+		if (hand.size() > 0)
 		{
 			card* temp = hand[index];
-			discord_pile.push_back(hand[index]);
-			hand.erase(hand.begin() + index); //I'm not sure why this isn't working
-			return temp;
+			discard_pile.push_back(hand[index]); //Puts in discard pile
+			hand.erase(hand.begin() + index);  //Removes from player's hand
+			return temp; //Returns card type to play that card
 		}
-		else
+		else //Runs if player has no cards left 
 		{
 			card* dummy = new card();
 			return dummy;
@@ -61,6 +61,7 @@ public:
 		
 	}
 	virtual int myTurn() = 0;
+
 	bool hasLost()
 	{
 		if (health <= 0)
@@ -86,15 +87,23 @@ public:
 		return opponent;
 	}
 
+	/// <summary>
+	/// Gets the player's current hand
+	/// </summary>
+	/// <returns></returns>
 	vector<card*> getHand()
 	{
 		return hand;
 	}
+	/// <summary>
+	/// Is the player human controlled?
+	/// </summary>
+	/// <returns></returns>
 	virtual bool isHuman() = 0;
 
 #pragma endregion
 	/// <summary>
-	/// Should only run in the beginnig of the function
+	/// Should only run in the beginning of the function
 	/// </summary>
 	/// <param name="opp"></param>
 	void setOpponent(player* opp)
@@ -107,7 +116,9 @@ public:
 	}
 	
 #pragma region Card Functions
-	//Fully heals the player
+	/// <summary>
+	/// Fully heals the player
+	/// </summary>
 	void fullHeal()
 	{
 		health = 20;
@@ -128,16 +139,21 @@ public:
 		hand = TempHand;
 	}
 
+	/// <summary>
+	/// Puts their discard pile back in their deck and shuffles it
+	/// </summary>
 	void rebootDeck()
 	{
-		for (card* DeadCard : discord_pile)
+		for (card* DeadCard : discard_pile)
 		{
 			deck.push_back(DeadCard);
 		}
-		discord_pile.clear();
-		shuffle(deck);
+		discard_pile.clear();
+		deck = shuffle(deck);
 	}
-
+	/// <summary>
+	/// Returns the first card in the opponents deck
+	/// </summary>
 	void getFirstCardName()
 	{
 		if (deck.size() != 0)

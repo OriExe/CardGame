@@ -43,10 +43,10 @@ public:
 			}
 			else
 			{
-				return index; //Plays card on opponent  triggering it's effect
+				return index; //Plays card on opponent triggering it's effect
 			}
 		}
-		else if (index == hand.size())
+		else if (index == hand.size()) //Player wants to draw a card
 		{
 			if (hand.size() < 5)
 			{
@@ -70,7 +70,7 @@ public:
 		
 	}
 
-	bool isHuman()
+	bool isHuman() 
 	{
 		return true;
 	}

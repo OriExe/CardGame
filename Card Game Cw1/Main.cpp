@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <random>
+#include <cstdlib> // Needed to generate a random number 
+#include <ctime>   // Needed to get time info
 #include <algorithm>
 #include "card.h"
 #include "player.h"
@@ -62,16 +63,35 @@ void createDeck(vector<card*>& cards)
 }
 
 /// <summary>
-/// Shuffles the players deck
+/// Shuffles the players deck and returns it
 /// </summary>
 /// <param name="cards">Reference to current deck</param>
-
-extern void shuffle(vector<card*>& cards)
+extern vector<card*> shuffle(vector<card*> cards)
 {
-	//This is not that random tho
-	auto rng = std::default_random_engine{};
-	std::shuffle(cards.begin(), cards.end(), rng);
-	cout << "Deck shuffled" << endl;
+	vector<card*> temp; 
+	vector<int> usedIndexes; //Already used cards
+
+	srand(time(0)); //Generates a random seed based on the current time //Reference https://www.w3schools.com/cpp/cpp_howto_random_number.asp
+	while (temp.size() != cards.size())
+	{
+		bool nonDuplicate = true;
+		int randomIndex = rand() % cards.size(); // Generate a random number between 0 and the number of cards in the deck 
+		//If index already used will it will not be used again
+		for (int i : usedIndexes)
+		{
+			if (i == randomIndex)
+			{
+				nonDuplicate = false;
+			}
+		}
+		if (nonDuplicate == true) //Only runs if the index is unique to the new deck 
+		{
+			temp.push_back(cards[randomIndex]);
+			usedIndexes.push_back(randomIndex);
+		}
+	}
+
+	return temp;
 }
 
 
@@ -80,16 +100,17 @@ int main()
 	//Create deck for both the player and computer
 	createDeck(playerDeck);
 	createDeck(computerDeck);
-	//Shuffle Deck
-	shuffle(playerDeck);
-	shuffle(computerDeck);
+	//Shuffles each Deck
+	playerDeck = shuffle(playerDeck);
+	computerDeck = shuffle(computerDeck);
 	
-	//Creates players and sets the opponent value
+	//Creates players and sets the opponent values
 	HumanPlayer* player = new HumanPlayer(playerDeck);
 	ComputerPlayer* aiPlayer = new ComputerPlayer(computerDeck);
 	player->setOpponent(aiPlayer);
 	aiPlayer->setOpponent(player);
 	
+	//Draws 5 cards
 	cout << "Drawing cards" << endl;
 	for (int i = 0; i < 5; i++)
 	{
@@ -104,13 +125,14 @@ int main()
 	while (player->hasLost() == false && aiPlayer->hasLost() == false)
 	{
 		cout << "Your deck:" << "	Health:" << player->getHealth() << "	Opponent Health:" <<aiPlayer->getHealth() << endl;
-		playerIndex = player->myTurn();
+		playerIndex = player->myTurn(); 
 		player->playCard(playerIndex)->effect(*aiPlayer);
 		//
 		computerIndex = aiPlayer->myTurn();
 		aiPlayer->playCard(computerIndex)->effect(*player);
 	}
 
+	//End of game loop
 	if (player->hasLost() == true)
 	{
 		cout << "You have lost :(" << endl;

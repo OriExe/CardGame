@@ -25,7 +25,7 @@ public:
 		//Sleep(2000); //Windows specific sleep function  Guide in this link --> https://www.geeksforgeeks.org/sleep-function-in-cpp/
 		if (randomIndex == hand.size())
 		{
-			if (hand.size() < 5)
+			if (hand.size() < 5) //Will only actually draw card if computer has less than 5 cards
 			{
 				cout << "Computer has drawn a card" << endl;
 				drawCard();
